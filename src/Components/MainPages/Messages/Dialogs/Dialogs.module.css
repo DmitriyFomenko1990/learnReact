@@ -1,0 +1,11 @@
+.list{
+    padding: 10px 0;
+    text-align: center;
+
+}
+.list  a {
+    font-family: Сomic Sans MS, serif;
+    text-decoration: none;
+    font-size: 20px;
+    color: #404853;
+}

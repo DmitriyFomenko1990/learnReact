@@ -1,0 +1,23 @@
+.headMyPost{
+  font-weight: 700;
+  padding: 0 30px;
+  font-size: 25px;
+}
+.inputBox{
+  width: 90%;
+  height: 50px;
+
+  border: rgb(7, 68, 7) 3px solid;
+  border-radius: 5%;
+  
+}
+.inputSend{
+  background-color: midnightblue;
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px thistle ;
+  position: relative;
+  left: 85%;  
+}
+

@@ -1,0 +1,6 @@
+.gridMess{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    background-color: azure;
+    height: 100%;
+}

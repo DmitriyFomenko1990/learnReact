@@ -1,0 +1,17 @@
+.profileHeader{
+  display: flex;
+  flex-direction: row;
+}
+.imageLogo{
+  height: 180px;
+  margin: 10px;
+}
+.name{
+  font-size: 20px;
+  padding: 20px;
+  font-weight: 600;
+}
+.profilList{
+  list-style-type: none;
+  font-weight: 800; 
+  }

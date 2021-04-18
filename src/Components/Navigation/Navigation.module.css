@@ -1,0 +1,24 @@
+.appNavigation {
+    grid-area: n;
+    background-color:  #556832;
+    border-radius: 20px;
+    height: 250px;
+    box-shadow: 0 0 10px;
+}
+
+.item {
+    margin: 20px;
+
+}
+
+.item a {
+    font-family: Сomic Sans MS;
+    text-decoration: none;
+    color: antiquewhite;
+    font-size: 20px;
+}
+
+.item a.active {
+    font-size: 25px;
+    color: goldenrod;
+}
