@@ -86,12 +86,12 @@ const usersReducer = (state = srartState, action) => {
 
 };
 
-export const followActivCreate = (id) => ({type: FOLLOW, userid: id})
-export const unfollowActivCreate = (id) => ({type: UNFOLLOW, userid: id})
-export const setUsersActivCreate = (users) => ({type: SETUSERS, users: users})
-export const setTotalUsersActivCreate = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount})
-export const updatePageActivCreate = (page) => ({type: UPDATE_PAGE, page})
-export const isReceivedActivCreate = (isReceived) => ({type: IS_RECEIVED, isReceived})
+export const follow = (id) => ({type: FOLLOW, userid: id})
+export const unfollow = (id) => ({type: UNFOLLOW, userid: id})
+export const setUsers = (users) => ({type: SETUSERS, users: users})
+export const setTotalUsers= (totalCount) => ({type: SET_TOTAL_COUNT, totalCount})
+export const updatePage = (page) => ({type: UPDATE_PAGE, page})
+export const isReceived = (isReceived) => ({type: IS_RECEIVED, isReceived})
 
 
 export default usersReducer;

@@ -23,8 +23,7 @@ const Users = (props) => {
             </div>
             {props.isReceivedStatus && <img src={Preloader}  className={style.preloader}/>}
 
-            {
-                props.users.map((u) => <div key={u.id} className={style.userBlock}>
+            { !props.isReceivedStatus && props.users.map((u) => <div key={u.id} className={style.userBlock}>
                     <div>
                         <img className={style.userAvatar} src={ u.photos.small ? u.photos.small : "https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg"}/>
                         <div className={style.button}>{u.isFallow

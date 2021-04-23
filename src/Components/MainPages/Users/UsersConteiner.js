@@ -2,11 +2,11 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {
-    followActivCreate, isReceivedActivCreate,
-    setTotalUsersActivCreate,
-    setUsersActivCreate,
-    unfollowActivCreate,
-    updatePageActivCreate
+    follow, isReceived,
+    setTotalUsers,
+    setUsers,
+    unfollow,
+    updatePage
 } from "../../../Redux/users-reducer";
 import * as axios from "axios";
 import Users from "./Users";
@@ -28,8 +28,6 @@ class UsersConteiner extends React.Component {
         this.props.isReceived(true)
         this.props.updatePage(page)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPageNumber}&count=${this.props.usersPageCount}`).then(response => {
-            let x = this.props.isReceivedStatus
-            
             this.props.setUsers(response.data.items)
             this.props.isReceived(false)
         })
@@ -60,7 +58,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-
+/*
 const mapDispatchToProps = (dispatch) => {
     return {
         follow: (id) => {
@@ -81,11 +79,11 @@ const mapDispatchToProps = (dispatch) => {
         isReceived: (isReceived) => {
             dispatch(isReceivedActivCreate(isReceived))
         },
-
-
-    }
-}
+        }
+}*/
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersConteiner)
+export default connect(mapStateToProps, {
+    follow, unfollow, setUsers, setTotalUsers,
+    updatePage, isReceived} )(UsersConteiner)
