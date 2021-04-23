@@ -1,13 +1,19 @@
-  .header {
-   grid-area: h;
-   background-color: #556832;
-    border-radius: 50px;
-      box-shadow: 0 0 10px;
-  }
-  .header div{
-      padding-top: 10px;
-      font-family: Сomic Sans MS;
-      font-size: 30px;
-      color: goldenrod;
-      text-align: center;
-  }
+
+.header {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+.navigationBox {
+
+}
+
+
+
+.imgBack {
+    height: 100px;
+
+}

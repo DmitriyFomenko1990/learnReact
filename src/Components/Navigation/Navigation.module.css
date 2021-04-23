@@ -1,24 +1,29 @@
 .appNavigation {
-    grid-area: n;
-    background-color:  #556832;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color:  rgb(54, 54, 54);
     border-radius: 20px;
-    height: 250px;
+    height: 100px;
     box-shadow: 0 0 10px;
+
 }
 
 .item {
-    margin: 20px;
+width: 120px;
 
 }
 
 .item a {
-    font-family: Сomic Sans MS;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     text-decoration: none;
-    color: antiquewhite;
+    color: rgb(255, 255, 255);
     font-size: 20px;
 }
 
 .item a.active {
     font-size: 25px;
-    color: goldenrod;
+    color:  rgb(255, 255, 255);
 }

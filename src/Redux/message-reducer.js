@@ -16,20 +16,25 @@ let srartState = {
         {message: 'bv'},
         {message: 'yo'},
     ],
-    newMessageText: '',
+    newMessageText: 'dfwefvd',
 
 }
 
 const messageReducer = (state = srartState, action) => {
     switch (action.type) {
         case 'ADD-MESSAGE':
-            let inputText = state.newMessageText
-            let newMessageData = {message: inputText}
-            state.DialogsData.push(newMessageData)
-            state.newMessageText = ''
-            return state
+            let inputText = state.newMessageText;
+            let newMessageData = {message: inputText};
+            return {
+                ...state,
+                DialogsData: [...state.DialogsData, newMessageData],
+                newMessageText: '',
+            }
         case 'CHANGE-NEW-MESSAGE-TEXT':
-            state.newMessageText = action.newText
+            return {
+                ...state,
+                newMessageText: action.newText,
+            }
         default:
             return state
     }

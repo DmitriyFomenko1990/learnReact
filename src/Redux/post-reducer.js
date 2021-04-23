@@ -8,7 +8,7 @@ let srartState = {
         {id: 'Igor', message: 'post3', likeCount: 1},
         {id: 'Igor', message: 'post4', likeCount: 0},
     ],
-    newTextArea: '',
+    newTextArea: 'dfve',
 }
 
 const postReducer = (state = srartState, action) => {
@@ -17,12 +17,16 @@ const postReducer = (state = srartState, action) => {
         case 'ADD-POST' :
             let inputText = state.newTextArea
             let newMessageData = {id: 1, message: inputText, likeCount: 0}
-            state.PostsObj.unshift(newMessageData);
-            state.newTextArea = ''
-            return state
+            return {
+                ...state,
+                PostsObj: [...state.PostsObj, newMessageData],
+                newTextArea: '',
+            }
         case 'CHANGE-NEW-POST-TEXT' :
-            state.newTextArea = action.newText
-            return state
+            return {
+                ...state,
+                newTextArea: action.newText,
+            }
         default:
             return state
     }

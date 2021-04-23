@@ -8,11 +8,11 @@ const Profile = (props) => {
         <div>
             <HeadData/>
 
-            <InputFormConteiner store={props.store} />
+            <InputFormConteiner/>
 
-{Posts(props.postsObj)}
-</div>
-)
+            {Posts(props.postsObj)}
+        </div>
+    )
 }
 
 
@@ -22,7 +22,8 @@ const Post = (props) => {
 }
 
 function Posts(Arrey) {
-        return Arrey.map(p => {
+
+    return Arrey.map(p => {
         return <Post message={p.message} likeCount={p.likeCount} id={p.id}/>
     })
 }

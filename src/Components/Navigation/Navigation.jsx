@@ -10,7 +10,7 @@ const Navigation = () => {
             <div className={style.item}>
                 <NavLink to="/messages" activeClassName={style.active}>Messages</NavLink></div>
             <div className={style.item}>
-                <NavLink to="/news" activeClassName={style.active}>News</NavLink></div>
+                <NavLink to="/users" activeClassName={style.active}>Users</NavLink></div>
             <div className={style.item}>
                 <NavLink to="/music" activeClassName={style.active}>Music</NavLink></div>
             <div className={style.item}>

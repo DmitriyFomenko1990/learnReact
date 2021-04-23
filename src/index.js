@@ -4,25 +4,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
 
-let renderReactDom = (state) => {
+
 
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store}
-                 dispatch={store.dispatch.bind(store)}
-            />
+            <Provider store={store}>
+                <App/>
+            </Provider>
+
         </BrowserRouter>,
         document.getElementById('root')
     );
-}
-renderReactDom(store.getState())
-store.subscribe(() => {
-        let state = store.getState()
-        renderReactDom(state)
-    }
-);
+
 
 
 // If you want to start measuring performance in your app, pass a function

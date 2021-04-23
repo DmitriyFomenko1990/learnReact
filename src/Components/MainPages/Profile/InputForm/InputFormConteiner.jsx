@@ -1,23 +1,27 @@
 import React from 'react';
 import {addPostActivCreate, changeNewPostTextActivCreate} from "../../../../Redux/post-reducer";
 import InputForm from "./InputForm";
+import {connect} from "react-redux";
 
 
-const InputFormConteiner = (props) => {
-
-    let state = props.store.getState();
-
-    let addPost = () => {
-        props.store.dispatch(addPostActivCreate())
+const mapStateToProps = (state) => {
+    return {
+        newTextArea: state.profilePage.newTextArea
     }
-
-    let postChange = (text) => {
-        props.store.dispatch(changeNewPostTextActivCreate(text))
-
-    }
-
-    return (<InputForm newTextArea={state.profilePage.newTextArea}
-                      addPost={addPost}
-                      postChange={postChange} />)
 }
-export default InputFormConteiner
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: () => {
+            dispatch(addPostActivCreate());
+        },
+        postChange: (text) => {
+            let action = changeNewPostTextActivCreate(text);
+            dispatch(action);
+        },
+    }
+}
+
+const  InputFormConteiner = connect(mapStateToProps, mapDispatchToProps)(InputForm);
+
+export default InputFormConteiner;

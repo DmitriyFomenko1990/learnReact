@@ -1,0 +1,59 @@
+.usersPage{
+    text-align: center;
+}
+
+.pageSwitcher{
+    text-align: center;
+}
+.pageSwitcherEl{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 3px;
+    background: #404853;
+    color: azure;
+}
+.pageActivEl{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 3px;
+    background: azure;
+    color: #404853;
+}
+
+
+.userBlock {
+display: inline-flex;
+    border-radius: 20px;
+    box-shadow: 0 0 10px;
+    margin: 20px;
+
+}
+.infoBlock {
+    width: 250px;
+}
+
+.userAvatar{
+    height: 150px;
+    width: 150px;
+}
+
+
+.userInfo{
+    padding: 20px 0 0 30px;
+    font-size: 15px;
+}
+
+.button{
+    text-align: center;
+    padding: 0 0 5px 0;
+}
+.preloader{
+    position: fixed;
+    right: 50%;
+    bottom: 50%;
+}
+
