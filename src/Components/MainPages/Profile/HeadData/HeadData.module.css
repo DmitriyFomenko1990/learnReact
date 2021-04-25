@@ -3,7 +3,8 @@
   flex-direction: row;
 }
 .imageLogo{
-  height: 180px;
+  height: 300px;
+  width: 300px;
   margin: 10px;
 }
 .name{

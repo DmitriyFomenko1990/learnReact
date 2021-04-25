@@ -3,10 +3,13 @@ import style from './Profile.module.css'
 import InputFormConteiner from "./InputForm/InputFormConteiner";
 
 
+
+
 const Profile = (props) => {
+
     return (
-        <div>
-            <HeadData/>
+        <div className={style.profileWrapper}>
+             <HeadData data={props.data}/>
 
             <InputFormConteiner/>
 

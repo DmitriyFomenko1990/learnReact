@@ -1,5 +1,7 @@
-const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
-const ADD_POST = 'ADD-POST'
+const CHANGE_NEW_POST_TEXT = 'CHANGE_NEW_POST_TEXT'
+const ADD_POST = 'ADD_POST'
+const SET_DATA = 'SET_DATA'
+
 
 let srartState = {
     PostsObj: [
@@ -9,12 +11,14 @@ let srartState = {
         {id: 'Igor', message: 'post4', likeCount: 0},
     ],
     newTextArea: 'dfve',
+    dataPerson: null,
 }
 
-const postReducer = (state = srartState, action) => {
+const profileReducer = (state = srartState, action) => {
 
     switch (action.type) {
-        case 'ADD-POST' :
+
+        case ADD_POST :
             let inputText = state.newTextArea
             let newMessageData = {id: 1, message: inputText, likeCount: 0}
             return {
@@ -22,10 +26,16 @@ const postReducer = (state = srartState, action) => {
                 PostsObj: [...state.PostsObj, newMessageData],
                 newTextArea: '',
             }
-        case 'CHANGE-NEW-POST-TEXT' :
+        case CHANGE_NEW_POST_TEXT :
             return {
                 ...state,
                 newTextArea: action.newText,
+            }
+            case SET_DATA :
+            return {
+
+                ...state,
+                dataPerson: action.data,
             }
         default:
             return state
@@ -35,7 +45,7 @@ const postReducer = (state = srartState, action) => {
 };
 
 export const addPostActivCreate = () => ({type: ADD_POST})
-export const changeNewPostTextActivCreate = (text) =>
-    ({type: CHANGE_NEW_POST_TEXT, newText: text})
+export const changeNewPostTextActivCreate = (text) => ({type: CHANGE_NEW_POST_TEXT, text})
+export const setData = (data) => ({type: SET_DATA, data})
 
-export default postReducer;
+export default profileReducer;

@@ -6,7 +6,7 @@ const Navigation = () => {
     return (
         <nav className={style.appNavigation}>
             <div className={style.item}>
-                <NavLink to="/profile" activeClassName={style.active}>Profile</NavLink></div>
+                <NavLink to="/profile/" activeClassName={style.active}>Profile</NavLink></div>
             <div className={style.item}>
                 <NavLink to="/messages" activeClassName={style.active}>Messages</NavLink></div>
             <div className={style.item}>

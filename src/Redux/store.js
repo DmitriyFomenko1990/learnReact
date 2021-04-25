@@ -1,4 +1,4 @@
-import postReducer from "./post-reducer";
+import postReducer from "./profile-reducer";
 import messageReducer from "./message-reducer";
 
 

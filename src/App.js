@@ -17,7 +17,7 @@ function App(props) {
             <Header />
 
             <div className="main-Content">
-                <Route path='/profile' render={() => <ProfileConteiner />}/>
+                <Route path='/profile/:userID?' render={() => <ProfileConteiner />}/>
                 <Route path='/messages' render={() => <Messages  />}/>
                 <Route path='/users' render={() => <UsersConteiner />}/>
                 <Route path='/news' component={News}/>

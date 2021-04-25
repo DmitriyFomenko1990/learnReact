@@ -1,13 +1,15 @@
 import {combineReducers, createStore} from "redux";
-import postReducer from "./post-reducer";
 import messageReducer from "./message-reducer";
 import {useReducer} from "react";
 import usersReducer from "./users-reducer";
+import profileReducer from "./profile-reducer";
+import authReducer from "./auth-reducer";
 
 let reducers = combineReducers({
-    profilePage: postReducer,
+    profilePage: profileReducer,
     messagePage: messageReducer,
     usersPage: usersReducer,
+    auth: authReducer,
 })
 
 let store = createStore(reducers);

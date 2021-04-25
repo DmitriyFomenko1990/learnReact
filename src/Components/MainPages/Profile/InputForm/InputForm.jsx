@@ -22,7 +22,8 @@ const InputForm = (props) => {
                 <div>
                     <textarea ref={newPostElement} onChange={onPostChange} className={style.inputBox}
                               value={props.newTextArea}/>
-                    <button type='button' className={style.inputSend} onClick={onAddPost}>Send</button>
+                              <div>
+                    <button type='button' className={style.inputSend} onClick={onAddPost}>Send</button></div>
                 </div>
             </div>
         </div>

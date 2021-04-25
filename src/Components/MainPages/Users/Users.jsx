@@ -1,6 +1,9 @@
 import style from './Users.module.css'
 import React from 'react';
-import Preloader from '../../../img/preloader.gif'
+import Preloader from '../../Tools/Preloader';
+import logo1 from '../../../img/logo1.jpg'
+import {NavLink} from "react-router-dom";
+
 
 
 
@@ -21,11 +24,13 @@ const Users = (props) => {
             <div className={style.pageSwitcher}>
                 {pagesAmountArrey}
             </div>
-            {props.isReceivedStatus && <img src={Preloader}  className={style.preloader}/>}
+            {props.isReceivedStatus && <Preloader />}
 
             { !props.isReceivedStatus && props.users.map((u) => <div key={u.id} className={style.userBlock}>
                     <div>
-                        <img className={style.userAvatar} src={ u.photos.small ? u.photos.small : "https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg"}/>
+                        <NavLink to={`/profile/${u.id}`} >
+                            <img className={style.userAvatar} src={ u.photos.small ? u.photos.small : logo1 } />
+                        </NavLink>
                         <div className={style.button}>{u.isFallow
                             ? <button onClick={() => props.unfollow(u.id)}>FOLLOW</button>
                             : <button onClick={() => props.follow(u.id)}>UNFOLLOW</button>}

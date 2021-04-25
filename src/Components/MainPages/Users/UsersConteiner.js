@@ -16,7 +16,8 @@ class UsersConteiner extends React.Component {
 
     componentDidMount() {
         this.props.isReceived(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPageNumber}&count=${this.props.usersPageCount}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPageNumber}&count=${this.props.usersPageCount}`)
+            .then(response => {
 
             this.props.setUsers(response.data.items)
             this.props.setTotalUsers(response.data.totalCount)

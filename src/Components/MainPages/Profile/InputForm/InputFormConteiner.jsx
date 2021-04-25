@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPostActivCreate, changeNewPostTextActivCreate} from "../../../../Redux/post-reducer";
+import {addPostActivCreate, changeNewPostTextActivCreate} from "../../../../Redux/profile-reducer";
 import InputForm from "./InputForm";
 import {connect} from "react-redux";
 
