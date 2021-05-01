@@ -1,39 +1,43 @@
-import React from 'react';
+import React from "react";
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import axios from "axios";
-import {setData} from "../../../Redux/profile-reducer";
+import {getProfileData, getStatus, updateStatus} from "../../../Redux/profile-reducer";
 import {withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../../HOC/withAuthRedirect";
+import {compose} from "redux";
+
+
 
 class ProfileConteiner extends React.Component {
     componentDidMount() {
 
         let userID = this.props.match.params.userID;
         if (!userID) {
-            userID = 2;
+            userID = 16744;
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID)
-            .then(response => {
 
-                    this.props.setData(response.data)
-                }
-            )
+        this.props.getProfileData(userID)
+        this.props.getStatus(userID)
     }
 
     render() {
+
         return <Profile { ...this.props} />
 
 
     }
 }
 
+
+
 const mapStateToProps = (state) => {
     return {
-        postsObj: state.profilePage.PostsObj,
-        data: state.profilePage.dataPerson
+        postsObj: state.profilePage.posts,
+        data: state.profilePage.dataPerson,
+        status: state.profilePage.status,
     }
 }
-
-let witnDataConteinerComponent = withRouter(ProfileConteiner);
-export default connect(mapStateToProps, {setData})(witnDataConteinerComponent);
-
+export default compose(
+    withAuthRedirect,
+    withRouter,
+    connect(mapStateToProps, {getProfileData, getStatus, updateStatus}))(ProfileConteiner)

@@ -1,15 +1,20 @@
+import React from "react";
 import HeadData from './HeadData/HeadData'
 import style from './Profile.module.css'
 import InputFormConteiner from "./InputForm/InputFormConteiner";
+import {updateStatus} from "../../../Redux/profile-reducer";
+
 
 
 
 
 const Profile = (props) => {
 
+
     return (
+
         <div className={style.profileWrapper}>
-             <HeadData data={props.data}/>
+             <HeadData updateStatus={props.updateStatus} status={props.status} data={props.data}/>
 
             <InputFormConteiner/>
 

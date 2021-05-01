@@ -1,37 +1,28 @@
 import React from "react";
 import {connect} from "react-redux";
-
 import {
-    follow, isReceived,
+    follow, getUsers,
     setTotalUsers,
-    setUsers,
     unfollow,
     updatePage
 } from "../../../Redux/users-reducer";
-import * as axios from "axios";
 import Users from "./Users";
+import {withAuthRedirect} from "../../../HOC/withAuthRedirect";
+import {compose} from "redux";
+
 
 
 class UsersConteiner extends React.Component {
 
     componentDidMount() {
-        this.props.isReceived(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPageNumber}&count=${this.props.usersPageCount}`)
-            .then(response => {
+        
+        this.props.getUsers(this.props.usersPageNumber, this.props.usersPageCount)
 
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsers(response.data.totalCount)
-            this.props.isReceived(false)
-        })
     }
 
     changePage = (page) => {
-        this.props.isReceived(true)
         this.props.updatePage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPageNumber}&count=${this.props.usersPageCount}`).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.isReceived(false)
-        })
+        this.props.getUsers(this.props.usersPageNumber, this.props.usersPageCount)
     }
 
     render() {
@@ -43,6 +34,7 @@ class UsersConteiner extends React.Component {
                       follow={this.props.follow}
                       unfollow={this.props.unfollow}
                       isReceivedStatus={this.props.isReceivedStatus}
+                      isAuth={this.props.isAuth}
         />
     }
 
@@ -59,32 +51,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-/*
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (id) => {
-            dispatch(followActivCreate(id))
-        },
-        unfollow: (id) => {
-            dispatch(unfollowActivCreate(id))
-        },
-        setUsers: (usersArr) => {
-            dispatch(setUsersActivCreate(usersArr))
-        },
-        setTotalUsers: (totalCount) => {
-            dispatch(setTotalUsersActivCreate(totalCount))
-        },
-        updatePage: (totalCount) => {
-            dispatch(updatePageActivCreate(totalCount))
-        },
-        isReceived: (isReceived) => {
-            dispatch(isReceivedActivCreate(isReceived))
-        },
-        }
-}*/
 
-
-
-export default connect(mapStateToProps, {
-    follow, unfollow, setUsers, setTotalUsers,
-    updatePage, isReceived} )(UsersConteiner)
+export default compose(
+    connect(mapStateToProps,{follow, unfollow, setTotalUsers, updatePage, getUsers} ),
+    withAuthRedirect
+)(UsersConteiner)

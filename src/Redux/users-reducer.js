@@ -1,3 +1,6 @@
+import {usersAPI} from "../API/API";
+
+
 const UNFOLLOW = 'UNFOLLOW'
 const FOLLOW = 'FOLLOW'
 const SETUSERS = 'SETUSERS'
@@ -7,40 +10,7 @@ const IS_RECEIVED = 'IS_RECEIVED'
 
 
 let srartState = {
-    users: [/*
-        {
-            id: 1,
-            avatarImg: 'https://hostenko.com/wpcafe/wp-content/uploads/rndavatar.png',
-            userName: 'Dmiriy Fomenko',
-            isFallow: true,
-            presentPost: 'manager',
-            userTelNumber: "+7 988 777 77 77"
-        },
-        {
-            id: 2,
-            avatarImg: 'https://hostenko.com/wpcafe/wp-content/uploads/rndavatar.png',
-            userName: 'Alina Mysina',
-            isFallow: false,
-            presentPost: 'louer',
-            userTelNumber: "+7 918"
-        },
-        {
-            id: 3,
-            avatarImg: 'https://hostenko.com/wpcafe/wp-content/uploads/rndavatar.png',
-            userName: 'Oksana Soldatova',
-            isFallow: true,
-            presentPost: 'director',
-            userTelNumber: "+7 918"
-        },
-        {
-            id: 4,
-            avatarImg: 'https://hostenko.com/wpcafe/wp-content/uploads/rndavatar.png',
-            userName: 'Andrey Dorogkin',
-            isFallow: false,
-            presentPost: 'manager',
-            userTelNumber: "+7 918"
-        },
-   */],
+    users: [],
     usersPageCount: 4,
     usersPageNumber: 1,
     totalUsers: 0,
@@ -92,6 +62,20 @@ export const setUsers = (users) => ({type: SETUSERS, users: users})
 export const setTotalUsers= (totalCount) => ({type: SET_TOTAL_COUNT, totalCount})
 export const updatePage = (page) => ({type: UPDATE_PAGE, page})
 export const isReceived = (isReceived) => ({type: IS_RECEIVED, isReceived})
+
+export const getUsers = (usersPageNumber, usersPageCount ) => {
+    return (dispatch) => {
+        dispatch(isReceived(true))
+
+        usersAPI.getUsers(usersPageNumber, usersPageCount).then(data => {
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsers(data.totalCount))
+            dispatch(isReceived(false))
+    })
+}}
+
+
+
 
 
 export default usersReducer;

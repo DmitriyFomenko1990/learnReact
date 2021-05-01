@@ -5,14 +5,12 @@ import style from './Login.module.css'
 
 const Login = (props) => {
 
-    if (!props.havePersonData) {
+    if (!props.userData.isAuth) {
         return <div>LOGIN</div>
     }
-    return  (<div className={style.log}>
-        <img src={!props.userData.photos.small
-            ? smallAva
-            : props.userData.photos.small}/>
-             <div className={style.name}>{props.userData.fullName}</div>
+   return  (<div className={style.log}>
+        <img src={smallAva}/>
+             <div className={style.name}>{props.userData.login}</div>
     </div>)
 
 

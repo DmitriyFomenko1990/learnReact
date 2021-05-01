@@ -1,7 +1,8 @@
-import react from 'react'
+import React from "react";
 import style from './HeadData.module.css'
 import Preloader from '../../../Tools/Preloader';
 import logo from '../../../../img/logo1.jpg'
+import Status from "./Status";
 
 
 const HeadData = (props) => {
@@ -12,10 +13,11 @@ const HeadData = (props) => {
     return (
         <div className={style.profileHeader}>
             <div><img className={style.imageLogo} src ={ (props.data.photos.large
-                ?  props.data.photos.large
-                : logo)} ></img></div>
+                                                            ?  props.data.photos.large
+                                                            : logo)} ></img></div>
             <div className='profilData'>
-                <div className={style.name}>{props.fullName}</div>
+                <div className={style.status}><Status updateStatus={props.updateStatus} status={props.status}/></div>
+                <div className={style.name}>{props.data.fullName}</div>
                 <div>
                     <ul className={style.profilList}>
                         <li>Ищет ратоту:{props.data.lookingForAJobDescription}</li>

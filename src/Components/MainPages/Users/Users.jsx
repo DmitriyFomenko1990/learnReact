@@ -2,7 +2,7 @@ import style from './Users.module.css'
 import React from 'react';
 import Preloader from '../../Tools/Preloader';
 import logo1 from '../../../img/logo1.jpg'
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 
 
 
@@ -17,6 +17,7 @@ const Users = (props) => {
                 ? style.pageActivEl
                 : style.pageSwitcherEl}>{i}</div>)
         }
+
 
         return <div className={style.usersPage}>
 
