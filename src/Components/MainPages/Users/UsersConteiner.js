@@ -13,18 +13,13 @@ import {compose} from "redux";
 
 
 class UsersConteiner extends React.Component {
-
     componentDidMount() {
-        
         this.props.getUsers(this.props.usersPageNumber, this.props.usersPageCount)
-
-    }
-
+    };
     changePage = (page) => {
         this.props.updatePage(page)
         this.props.getUsers(this.props.usersPageNumber, this.props.usersPageCount)
-    }
-
+    };
     render() {
         return <Users totalUsers={this.props.totalUsers}
                       usersPageCount={this.props.usersPageCount}
@@ -37,10 +32,7 @@ class UsersConteiner extends React.Component {
                       isAuth={this.props.isAuth}
         />
     }
-
 }
-
-
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -49,10 +41,7 @@ const mapStateToProps = (state) => {
         totalUsers: state.usersPage.totalUsers,
         isReceivedStatus: state.usersPage.isReceivedStatus,
     }
-}
-
-
+};
 export default compose(
     connect(mapStateToProps,{follow, unfollow, setTotalUsers, updatePage, getUsers} ),
-    withAuthRedirect
-)(UsersConteiner)
+    withAuthRedirect)(UsersConteiner);

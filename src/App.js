@@ -6,7 +6,7 @@ import Settings from "./Components/MainPages/Settings/Settings";
 import News from "./Components/MainPages/News/News";
 import ProfileConteiner from "./Components/MainPages/Profile/ProfileConteiner";
 import UsersConteiner from "./Components/MainPages/Users/UsersConteiner";
-import Login from "./Components/MainPages/LoginPage/LoginPage";
+import LoginPage from "./Components/MainPages/LoginPage/LoginPage";
 
 
 function App(props) {
@@ -22,7 +22,7 @@ function App(props) {
                 <Route path='/users' render={() => <UsersConteiner />}/>
                 <Route path='/news' component={News}/>
                 <Route path='/settings' component={Settings}/>
-                <Route path='/login' render={() => <Login />}/>
+                <Route path='/login' render={() => <LoginPage />}/>
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 import style from './InputForm.module.css';
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
-import {alphaNumeric, minLength5, required} from "../../../ utilities/Validators/validatorForm";
+import {alphaNumeric, minLength5, required} from "../../../ utilities/Validators/formValidator";
 
 
 const InputForm = (props) => {
