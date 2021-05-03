@@ -1,31 +1,27 @@
 import {usersAPI} from "../api/api";
 
-
-const UNFOLLOW = 'UNFOLLOW'
-const FOLLOW = 'FOLLOW'
-const SETUSERS = 'SETUSERS'
-const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
-const UPDATE_PAGE = 'UPDATE_PAGE'
-const IS_RECEIVED = 'IS_RECEIVED'
-
+const UNFOLLOW = 'UNFOLLOW';
+const FOLLOW = 'FOLLOW';
+const SET_USERS = 'SET_USERS';
+const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
+const UPDATE_PAGE = 'UPDATE_PAGE';
+const IS_RECEIVED = 'IS_RECEIVED';
 
 let srartState = {
     users: [],
-    usersPageCount: 4,
+    numberUsersPerPage: 4,
     usersPageNumber: 1,
     totalUsers: 0,
     isReceivedStatus: false,
+};
 
-}
-window.state = srartState
 const usersReducer = (state = srartState, action) => {
-
     switch (action.type) {
         case 'FOLLOW' :
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id == action.userid) {
+                    if (u.id === action.userid) {
                         return {...u, isFallow: true}
                     }
                     return u
@@ -35,13 +31,13 @@ const usersReducer = (state = srartState, action) => {
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id == action.userid) {
+                    if (u.id === action.userid) {
                         return {...u, isFallow: false}
                     }
                     return u
                 })
             }
-        case 'SETUSERS' :
+        case 'SET_USERS' :
             return {...state, users: [...action.users]}
         case 'SET_TOTAL_COUNT' :
             return {...state, totalUsers: action.totalCount}
@@ -52,30 +48,22 @@ const usersReducer = (state = srartState, action) => {
         default:
             return state
     }
-
-
 };
+export const follow = (id) => ({type: FOLLOW, userid: id});
+export const unfollow = (id) => ({type: UNFOLLOW, userid: id});
+export const setUsers = (users) => ({type: SET_USERS, users: users});
+export const setTotalUsers = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount});
+export const updatePage = (page) => ({type: UPDATE_PAGE, page});
+export const isReceived = (isReceived) => ({type: IS_RECEIVED, isReceived});
 
-export const follow = (id) => ({type: FOLLOW, userid: id})
-export const unfollow = (id) => ({type: UNFOLLOW, userid: id})
-export const setUsers = (users) => ({type: SETUSERS, users: users})
-export const setTotalUsers= (totalCount) => ({type: SET_TOTAL_COUNT, totalCount})
-export const updatePage = (page) => ({type: UPDATE_PAGE, page})
-export const isReceived = (isReceived) => ({type: IS_RECEIVED, isReceived})
-
-export const getUsers = (usersPageNumber, usersPageCount ) => {
+export const requestUsers = (usersPageNumber, numberUsersPerPage) => {
     return (dispatch) => {
-        dispatch(isReceived(true))
-
-        usersAPI.getUsers(usersPageNumber, usersPageCount).then(data => {
+        dispatch(isReceived(true));
+        usersAPI.getUsers(usersPageNumber, numberUsersPerPage).then(data => {
             dispatch(setUsers(data.items))
             dispatch(setTotalUsers(data.totalCount))
             dispatch(isReceived(false))
-    })
-}}
-
-
-
-
-
+        });
+    };
+};
 export default usersReducer;

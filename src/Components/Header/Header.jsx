@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react'
 import style from './Header.module.css'
 import Navigation from "../Navigation/Navigation";
 import LoginConteiner from "./LoginConteiner";

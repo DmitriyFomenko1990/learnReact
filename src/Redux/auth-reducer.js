@@ -1,6 +1,7 @@
 import {loginAPI, profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
-const SET_AUTH_INFO = 'SET_AUTH_INFO'
+const SET_AUTH_INFO = 'SET_AUTH_INFO';
 
 let srartState = {
     id: null,
@@ -25,26 +26,29 @@ export const setAuthInfo = (id, login, email, isAuth) => (
     {type: SET_AUTH_INFO, AuthInfo: {id, login, email, isAuth}});
 
 export const getUserData = () => (dispatch) => {
-        profileAPI.getAuthInfo()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    let {id, login, email} = data.data;
+       return  profileAPI.getAuthInfo()
+            .then(response => {
+                if (response.resultCode === 0) {
+                    let {id, login, email} = response.data;
                     dispatch(setAuthInfo(id, login, email,true))
                 }
             });
     };
 
 export const loginThunk = (formData) =>  (dispatch) => {
-        loginAPI.login(formData).then( data =>{
-                if (data.data.resultCode === 0) {
+        loginAPI.login(formData).then( response =>{
+                if (response.data.resultCode === 0) {
                     dispatch(getUserData());
+                } else {
+                    let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+                    dispatch(stopSubmit('login', {_error : message}));
                 }
             });
     };
 
 export const logoutThunk = () =>  (dispatch) => {
-    loginAPI.logout().then( data =>{
-        if (data.data.resultCode === 0) {
+    loginAPI.logout().then( response =>{
+        if (response.data.resultCode === 0) {
             dispatch(setAuthInfo( null,  null,  null,  false));
         }
     });

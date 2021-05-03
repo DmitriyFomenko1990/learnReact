@@ -1,7 +1,7 @@
-const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE-NEW-MESSAGE-TEXT'
-const ADD_MESSAGE = 'ADD-MESSAGE'
+const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE-NEW-MESSAGE-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
 
-let srartState = {
+let startState = {
     dialogsObject: [
         {id: 1, name: 'Дима'},
         {id: 2, name: 'Андрей'},
@@ -17,10 +17,9 @@ let srartState = {
         {message: 'yo'},
     ],
     newMessageText: 'dfwefvd',
+};
 
-}
-
-const messageReducer = (state = srartState, action) => {
+const messageReducer = (state = startState, action) => {
     switch (action.type) {
         case 'ADD-MESSAGE':
             let inputText = state.newMessageText;
@@ -40,10 +39,10 @@ const messageReducer = (state = srartState, action) => {
     }
 };
 
-export const addMesageActivCreate = () => ({type: ADD_MESSAGE})
+export const addMesageActivCreate = () => ({type: ADD_MESSAGE});
 
 export const changeNewMessaageTextActivCreate = (text) =>
-    ({type: CHANGE_NEW_MESSAGE_TEXT, newText: text})
+    ({type: CHANGE_NEW_MESSAGE_TEXT, newText: text});
 
 export default messageReducer;
 

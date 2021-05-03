@@ -1,7 +1,6 @@
 import postReducer from "./profile-reducer";
 import messageReducer from "./message-reducer";
 
-
 let store = {
     _state: {
         profilePage: {
@@ -72,7 +71,4 @@ let store = {
         this._callObserver(this._state);
     }
 };
-
-
-
 export default store;

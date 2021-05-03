@@ -2,3 +2,12 @@
 .inputErr {
     border: solid 2px darkred;
 }
+
+.formSummaryError{
+    border: solid 2px darkred;
+    color: darkred;
+    width: 160px;
+    font-weight: bold;
+    background-color: darkgray;
+    text-align: center;
+}

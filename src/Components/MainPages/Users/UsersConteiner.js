@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    follow, getUsers,
+    follow, requestUsers,
     setTotalUsers,
     unfollow,
     updatePage
@@ -9,20 +9,25 @@ import {
 import Users from "./Users";
 import {withAuthRedirect} from "../../../HOC/withAuthRedirect";
 import {compose} from "redux";
-
-
+import {
+    getNumberUsersPerPage,
+    getReceivedStatus,
+    getTotalUsers,
+    getUsers,
+    getUsersPageNumber
+} from "../../../Redux/users-selections";
 
 class UsersConteiner extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.usersPageNumber, this.props.usersPageCount)
+        this.props.getUsers(this.props.usersPageNumber, this.props.numberUsersPerPage)
     };
     changePage = (page) => {
         this.props.updatePage(page)
-        this.props.getUsers(this.props.usersPageNumber, this.props.usersPageCount)
+        this.props.getUsers(this.props.usersPageNumber, this.props.numberUsersPerPage)
     };
     render() {
         return <Users totalUsers={this.props.totalUsers}
-                      usersPageCount={this.props.usersPageCount}
+                      numberUsersPerPage={this.props.numberUsersPerPage}
                       usersPageNumber={this.props.usersPageNumber}
                       users={this.props.users}
                       changePage={this.changePage}
@@ -35,13 +40,13 @@ class UsersConteiner extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        usersPageCount: state.usersPage.usersPageCount,
-        usersPageNumber: state.usersPage.usersPageNumber,
-        totalUsers: state.usersPage.totalUsers,
-        isReceivedStatus: state.usersPage.isReceivedStatus,
+        users: getUsers(state),
+        numberUsersPerPage: getNumberUsersPerPage(state),
+        usersPageNumber: getUsersPageNumber(state),
+        totalUsers: getTotalUsers(state),
+        isReceivedStatus: getReceivedStatus(state),
     }
 };
 export default compose(
-    connect(mapStateToProps,{follow, unfollow, setTotalUsers, updatePage, getUsers} ),
+    connect(mapStateToProps,{follow, unfollow, setTotalUsers, updatePage, getUsers: requestUsers}),
     withAuthRedirect)(UsersConteiner);
