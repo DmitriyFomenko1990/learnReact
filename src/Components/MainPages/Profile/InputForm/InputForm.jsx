@@ -3,16 +3,12 @@ import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {alphaNumeric, minLength5, required} from "../../../ utilities/Validators/formValidator";
 
-
 const InputForm = (props) => {
-
     let onAddPost = (valios) => {
         props.addPost(valios.Textpost)
     }
-
     return (
         <div>
-
             <div className={style.headMyPost}>My posts</div>
             <InputReduxForm onSubmit={onAddPost}/>
         </div>
@@ -32,6 +28,6 @@ const InputFormNew = (props) => {
         </div>
     </form>
 }
-const InputReduxForm = reduxForm({form: 'login'})(InputFormNew)
+const InputReduxForm = reduxForm({form: 'login'})(InputFormNew);
 
-export default InputForm
+export default InputForm;

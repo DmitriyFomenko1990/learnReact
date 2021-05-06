@@ -7,7 +7,7 @@ import {
     updatePage
 } from "../../../Redux/users-reducer";
 import Users from "./Users";
-import {withAuthRedirect} from "../../../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
     getNumberUsersPerPage,
@@ -17,7 +17,7 @@ import {
     getUsersPageNumber
 } from "../../../Redux/users-selections";
 
-class UsersConteiner extends React.Component {
+class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.usersPageNumber, this.props.numberUsersPerPage)
     };
@@ -49,4 +49,4 @@ const mapStateToProps = (state) => {
 };
 export default compose(
     connect(mapStateToProps,{follow, unfollow, setTotalUsers, updatePage, getUsers: requestUsers}),
-    withAuthRedirect)(UsersConteiner);
+    withAuthRedirect)(UsersContainer);

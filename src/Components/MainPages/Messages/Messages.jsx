@@ -1,15 +1,12 @@
-import style from './Messages.module.css'
-import Dialogs from "./Dialogs/Dialogs";
+import React from "react";
+import style from './Messages.module.css';
 import DialogContentConteiner from "./DialogContent/DialogContentConteiner";
 
-
-
-const Messages = (props) => {
-
+const Messages = () => {
   return (
     <div className={style.gridMess}>
           <DialogContentConteiner />
     </div>
   )
 }
-export default Messages
+export default Messages;

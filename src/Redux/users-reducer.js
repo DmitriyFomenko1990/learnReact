@@ -56,14 +56,11 @@ export const setTotalUsers = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount
 export const updatePage = (page) => ({type: UPDATE_PAGE, page});
 export const isReceived = (isReceived) => ({type: IS_RECEIVED, isReceived});
 
-export const requestUsers = (usersPageNumber, numberUsersPerPage) => {
-    return (dispatch) => {
-        dispatch(isReceived(true));
-        usersAPI.getUsers(usersPageNumber, numberUsersPerPage).then(data => {
-            dispatch(setUsers(data.items))
-            dispatch(setTotalUsers(data.totalCount))
-            dispatch(isReceived(false))
-        });
-    };
+export const requestUsers = (usersPageNumber, numberUsersPerPage) => async (dispatch) => {
+    dispatch(isReceived(true));
+    let data = await usersAPI.getUsers(usersPageNumber, numberUsersPerPage);
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsers(data.totalCount));
+    dispatch(isReceived(false));
 };
 export default usersReducer;

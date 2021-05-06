@@ -1,12 +1,12 @@
 import React from "react";
-import "./App.css";
+import  "./App.css";
 import Header from './Components/Header/Header';
 import Messages from "./Components/MainPages/Messages/Messages";
 import {Route, withRouter} from "react-router-dom";
 import Settings from "./Components/MainPages/Settings/Settings";
-import News from "./Components/MainPages/News/News";
-import ProfileConteiner from "./Components/MainPages/Profile/ProfileConteiner";
-import UsersConteiner from "./Components/MainPages/Users/UsersConteiner";
+import Tools from "./Components/MainPages/Tools/Tools";
+import ProfileContainer from "./Components/MainPages/Profile/ProfileContainer";
+import UsersContainer from "./Components/MainPages/Users/UsersContainer";
 import LoginPage from "./Components/MainPages/LoginPage/LoginPage";
 import {connect} from "react-redux";
 import {compose} from "redux";
@@ -17,28 +17,31 @@ class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp();
     };
+
     render() {
-        if (!this.props.initialize) {
-            <Preloader />
+        if (!this.props.initialized) {
+            return <Preloader/>
         }
         return (
-            <div>
-                <Header/>
-                <div className="main-Content">
-                    <Route path='/profile/:userID?' render={() => <ProfileConteiner/>}/>
+            <div className="wrapper">
+                <Header className="header"/>
+                <div className="content">
+                    <Route path='/profile/:userID?' render={() => <ProfileContainer/>}/>
                     <Route path='/messages' render={() => <Messages/>}/>
-                    <Route path='/users' render={() => <UsersConteiner/>}/>
-                    <Route path='/news' component={News}/>
+                    <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/tools' render={() => <Tools/>}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/login' render={() => <LoginPage/>}/>
                 </div>
+                <div className="footer">Footer</div>
             </div>
         );
     };
-};
-const  mapStateToProps = (state) => ({
-    initialized : state.app.initialized
+}
+
+const mapStateToProps = (state) => ({
+    initialized: state.app.initialized
 });
 export default compose(
     withRouter,
-    connect(mapStateToProps, {initializeApp})) (App);
+    connect(mapStateToProps, {initializeApp}))(App);
